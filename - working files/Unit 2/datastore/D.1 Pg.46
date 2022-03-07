@@ -1,0 +1,74 @@
+--Page 46, People DB--
+--D1 a--
+select name
+from members
+where earns =(
+    select name, (max)earns
+    from  members);
+
+--b--
+select *
+from members
+where sex = 'm' 
+and earns < (
+    select avg(ears)
+    from members
+    where sex = 'm');
+
+--c--
+select name, likes
+from members
+where name != 'Mario' 
+and likes = (
+    select likes 
+    from members
+    where name = 'Mario');
+
+--d--
+select name
+from members 
+where dislikes in ('student', 'politices', 'sql');
+
+--e--
+select name, earns
+from members 
+where sex = 'm'
+and earns > ( 
+    select max(earns)
+    from members
+    where sex = 'f');
+
+select name, earns
+from members 
+where sex = 'm'
+and earns > all( 
+    select earns
+    from members
+    where sex = 'f');
+    
+--f--
+select name, earns
+from members
+where sex = 'f' 
+and earns > (
+    select min(earns)
+    from members
+    where sex = 'm');
+
+--g--
+select name, likes
+from members
+where sex = 'm'
+and likes in (
+    select distinct like 
+    from members
+    where sex = 'f');
+
+--h--
+select name, age, sex
+from members
+where sex = 'f'
+and age > (
+    select age
+    from members
+    where name = 'Kathy');

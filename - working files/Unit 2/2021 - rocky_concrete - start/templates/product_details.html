@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+<h4>Products Details</h4>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Product Code</th>
+        <th>Description</th>
+        <th>List Price</th>
+        <th>Qty On Hand</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in details %}
+    <tr>
+        <td>{{item['prod_code']}}</td>
+        <td>{{item['description']}}</td>
+        <td>{{item['list_price']}}</td>
+        <td>{{item['qty_on_hand']}}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

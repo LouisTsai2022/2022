@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+<h4>Rocky Concrete Customers List</h4>
+<table class="table">
+    <tr>
+        <th>Customers Number</th>
+        <th>Customers Name</th>
+        <th>Address</th>
+    </tr>
+    {% for row in customers %}  <!--  customers=results  -->
+    <tr>
+        <td><a href="/customer_details?cid={{row['cust_no']}}">{{row['cust_no']}}</a></td> <!--  add link  -->
+        <td>{{row['cust_name']}}</td>
+        <td>{{row['street']}}<br>{{row['town']}} {{row['post_code']}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

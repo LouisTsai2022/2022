@@ -1,0 +1,17 @@
+<div class="form-group"> <fieldset>
+    <legend class="border-bottom mb-2">Topics</legend> {% if form.topics.errors %}
+        <div class="text-danger">
+            {% for error in form.topics.errors %}
+                <span>{{error}}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% for topic in form.topics %}
+    <div class="form-check">
+        {{topic(class="form-check-input")}}
+        {{topic.label(class="form-check-label")}}
+    </div>
+    {% endfor %}
+    </fieldset>
+</div>

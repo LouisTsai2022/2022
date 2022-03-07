@@ -1,0 +1,108 @@
+--Join Queries--
+-----------------------------------------------------
+
+--JQ1 Standed--
+select prod_code, description, order_price, order_qty
+from order_details od, products p
+where od.prod_code = p.prod_code
+and order_no = 1234;
+
+--JQ1 Formal--
+select prod_code, description, order_price, order_qty
+from order_details od
+inner join products p
+on od.prod_code = p.prod_code
+and order_no = 1234;
+
+------------------------------------------------------
+
+--JQ2 Stended--
+select cust_name, street, town, post_code, order_date
+from customers c, orders o
+where c.cust_no = o.cust_no
+and order_date like '1706%'
+order by order_date asc;
+
+--JQ2 Formal--
+select cust_name, street, town, post_code, order_date
+from customers c
+inner join orders o;
+
+------------------------------------------------------
+
+--JQ3 Faster--
+select order_no, order_price, prod_code, list_price
+from order_details od, products p
+where od.prod_code = p.prod_code
+and order_price != list_price;
+
+------------------------------------------------------
+
+--JQ4 Faster--
+select cust_name, order_date, order_qty * order_price as 'total_price'
+from customers c, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and order_qty * order_price > 500
+order by order_date asc, total_price desc;
+
+------------------------------------------------------
+
+--JQ5--
+select description, cust_name
+from customers c, products p, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and od.prod_code = p.prod_code
+and town = 'Brisbane';
+
+-------------------------------------------------------
+
+--JQ6--
+select cust_name, curr_bal, cr_limit, order_date, order_qty * order_price as 'Total'
+from customers c, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and curr_bal > cr_limit;
+
+-------------------------------------------------------
+
+--JQ7--
+select c.cust_name
+from customers c, orders o, order_details od
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and od.prod_code = 'GNOME'
+and o.order_date between 130401 and 130430;
+
+-------------------------------------------------------
+
+--JQ8--
+select prod_code, description, order_date, order_qty
+from products p, orders o, order_details od
+where o.order_no = od.order_no
+and od.prod_code = p.prod_code
+and p.description = 'gardening';
+
+-------------------------------------------------------
+
+--JQ9--
+select prod_code, order_no, order_date, order_qty, remake_qty
+from products p, orders o, order_details od
+where o.order_no = od.order_no
+and od.prod_code = p.prod_code
+and order_qty > remake_qty;
+
+-------------------------------------------------------
+
+--JQ10--
+select cust_name, order_qty, list_price, order_price
+from customers c, orders o, order_details od, products p
+where c.cust_no = o.cust_no
+and o.order_no = od.order_no
+and p.prod_code = od.prod_code
+and prod_group = 'A'
+and post_code like '4%'
+and post_code between 4000 and 4999;
+
+-------------------------------------------------------

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block mainContent %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Welcome to Home Page</h2>
+            {% if session['username'] %}
+                {% for row in my_results %}
+                    <p>{{ row['subject_name']}} - {{ row['topic_description']}}<br>
+                    {{ row['url']}}<br>
+                    {{ row['description'] }}
+                    </p><hr>
+                {% endfor %}
+
+            {% else %}
+                {% for row in results %}
+                    <p>{{ row['subject_name']}} - {{ row['topic_description']}}<br>
+                    {{ row['url']}}<br>
+                    {{ row['description'] }}
+                    </p><hr>
+                {% endfor %}
+            {% endif %}
+
+            <h4>More Videos</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}

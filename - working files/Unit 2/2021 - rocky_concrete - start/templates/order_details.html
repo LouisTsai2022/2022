@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block mainContent %}
+<h4>Details for Order Details</h4>
+
+<p>for order number: {{details[0]['order_no']}}ordered on {{details[0]['order_date']}}</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Product Code</th>
+        <th>Description</th>
+        <th>Order Qty</th>
+        <th>Order Price</th>
+        <th>Line Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in details %}
+    <tr>
+        <td><a href="/product_details?pd={{item['order_no']}}">{{item['prod_code']}}</a></td>
+        <td>{{item['description']}}</td>
+        <td>{{item['order_qty']}}</td>
+        <td>{{item['order_price']}}</td>
+        <td style="text-align: right;">{{item['total']}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="5" style="text-align: right;">{{order_total['order total']}}</td>
+    </tr>
+
+    </tbody>
+</table>
+
+{% endblock %}

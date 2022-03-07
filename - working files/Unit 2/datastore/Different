@@ -1,0 +1,21 @@
+--update
+update members
+set earns = 25000
+where name = 'Bill';
+
+update members
+set age = age + 1;
+
+--insert
+insert
+into members (name, age, sex, earns, likes, dislikes)
+values ('Louis', '52', 'm', 40000, 'Cyccling', 'Smoking');
+
+insert
+into members (name, age, sex, earns, likes, dislikes)
+values ('Shirley', '18', 'f', 100000, 'Swimming', 'Smoking');
+
+--delete
+delete
+from members
+where name = 'Sue';
